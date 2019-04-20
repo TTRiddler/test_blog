@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-center mt-5">Главная страница (все посты)</h2>
+        {% for post in posts %}
+            <div class="card mt-5">
+                <div class="card-header justify-content-between d-flex">
+                    {{ post.created }}
+                    <div>Автор:<a href="{% url 'profile' post.author.username %}"> {{ post.author }}</a></div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.text }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
