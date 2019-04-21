@@ -23,12 +23,16 @@
                 </div>
             </form>
             {% endif %}
-                
         {% endif %}
+        <a href="{% url 'new_post' %}" class="btn btn-info">Добавить пост</a>
         {% for post in posts %}
-            <div class="card mt-5">
-                <div class="card-header">
+            <div class="card mt-5 post_block_{{ post.id }}">
+                <div class="card-header d-flex justify-content-between">
                     {{ post.created }}
+                    <form class="remove" action="{% url 'remove_post' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" data-id="{{ post.id }}" class="btn btn-danger">&times;</button>
+                    </form>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>

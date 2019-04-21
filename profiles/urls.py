@@ -9,5 +9,5 @@ urlpatterns = [
     path('follow/', login_required(views.FollowView.as_view()), name='follow'),
     path('unfollow/', login_required(views.UnFollowView.as_view()), name='unfollow'),
     path('login/', views.MyLoginView.as_view(), name='login'),
-    path('logout/', views.MyLogoutView.as_view(), name='logout'),
+    path('logout/', login_required(views.MyLogoutView.as_view()), name='logout'),
 ]
